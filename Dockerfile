@@ -35,10 +35,9 @@ RUN set -ex \
 
 ENV NUTCRACKER_RUNDIR /var/run/nutcracker
 
-RUN mkdir -p /etc/nutcracker
-COPY config.yml /etc/nutcracker/
+COPY nutcracker.yml /etc/nutcracker.yml
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-CMD ["nutcracker", "-c", "/etc/nutcracker/config.yml"]
+CMD ["nutcracker", "-c", "/etc/nutcracker.yml"]
