@@ -33,6 +33,7 @@ RUN set -ex \
     && rm -rf /usr/src/twemproxy \
     && apk del .build-deps
 
+ENV NUTCRACKER_RUNDIR /var/run/nutcracker
 
 RUN mkdir -p /etc/nutcracker
 COPY config.yml /etc/nutcracker/
