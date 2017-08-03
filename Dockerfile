@@ -4,8 +4,9 @@ RUN addgroup -S nutcracker && adduser -S -G nutcracker nutcracker
 
 RUN apk add --no-cache 'su-exec>=0.2'
 
+ENV TWEMPROXY_VERSION 0.4.1
 ENV TWEMPROXY_REPOSITORY mattrobenolt/twemproxy
-ENV TWEMPROXY_VERSION 49a96c4884332524d78eab8774f0229aa4398431
+ENV TWEMPROXY_SHA 49a96c4884332524d78eab8774f0229aa4398431
 
 RUN set -ex \
     && apk add --no-cache --virtual .build-deps \
@@ -20,7 +21,7 @@ RUN set -ex \
         musl-dev \
         wget \
     \
-    && wget -O twemproxy.tar.gz "https://github.com/$TWEMPROXY_REPOSITORY/archive/$TWEMPROXY_VERSION.tar.gz" \
+    && wget -O twemproxy.tar.gz "https://github.com/$TWEMPROXY_REPOSITORY/archive/$TWEMPROXY_SHA.tar.gz" \
     && mkdir -p /usr/src/twemproxy \
     && tar -xzC /usr/src/twemproxy -f twemproxy.tar.gz --strip-components=1 \
     && rm twemproxy.tar.gz \
